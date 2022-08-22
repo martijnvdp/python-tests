@@ -1,0 +1,21 @@
+.PHONY: init
+init:
+	pip install ansible
+	pip install flake8 pytest
+	pip install pytest
+	pip install pytest-mock
+	pip install moto
+	pip install coverage
+	pip install pylint
+	
+.PHONY: test
+test:
+	flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+	flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+	coverage run -m pytest -v  
+
+.PHONY: debug
+debug:
+	flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+	flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+	coverage run -m pytest -v  -o log_cli=true --log-level=info
