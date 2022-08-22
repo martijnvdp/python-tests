@@ -14,6 +14,6 @@ def ansibleInventory():
         sources=f"{Path(__file__).resolve().parent}/inventory",
     )
     with unittest.mock.patch(
-        "ansible_template.InventoryManager", return_value=inventory
+        "my_ansible_function.InventoryManager", return_value=inventory
     ):
         yield inventory
